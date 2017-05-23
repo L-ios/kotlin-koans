@@ -9,8 +9,11 @@ class Sum(val left: Expr, val right: Expr) : Expr
 
 fun eval(e: Expr): Int =
         when (e) {
-            is Num -> todoTask8(e)
-            is Sum -> todoTask8(e)
+            is Num -> e.value
+            is Sum -> {
+                val sum = e
+                eval(sum.left) + eval(sum.right)
+            }
             else -> throw IllegalArgumentException("Unknown expression")
         }
 
